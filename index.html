@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Obtener datos de un formulario</h1>
+    <form action="" onsubmit= "return false" id="formu">
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" id="nombre">
+        <br><br>
+        <button onclick="obtenerdatos()">enviar</button>
+
+    </form>
+</body>
+<script>
+    
+function obtenerdatos(){
+    const formu = document.forms["formu"];
+    // let nombre = formu["nombre"].value;
+    
+    // alert (nombre)
+
+    //objeto FormData
+    const datosFormu = new FormData(formu);
+    datosFormu.forEach((k, v) => console.log(k + "->" + v)); 
+    const objformu = Object.fromEntries(datosFormu.entries())
+    const serialform = JSON.stringify(objformu);
+    console.log(serialform)
+}
+  
+
+
+const fData = new FormData();
+//Agregar datos al formData
+
+fData.append("David", 20);
+fData.append("yenny", 15);
+for(const[llave, valor] of fData)
+    console.log(llave+ ":" + valor);
+//formData.has(key -> true / falsa si esta la llave formData)
+//formData.delete(key) -> elimina la llave, valor si existe
+// formato.get (key) -> devuelve el valor de una llave 
+//formData.getAll() -> obtiene todos los [key, value]
+</script>
+</html>
